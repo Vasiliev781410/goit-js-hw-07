@@ -1,11 +1,9 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-const markup = images.map((image) => `<li class="list-item">${image}</li>`)
-  .join("");
 
-// Check the console, you'll see a single string with HTML tags
-console.log(markup);
+const list = document.querySelector(".gallery");
+const markup = galleryItems.map((image) => `<a class="gallery__item" href=${image.original}><img class="gallery__image" src=${image.preview} alt=${image.description}></a>`).join("");
 
-// Adding all the markup in one operation
-list.innerHTML = markup;
-console.log(galleryItems);
+list.insertAdjacentHTML("beforeend", markup);
+
+let lightbox = new SimpleLightbox('.gallery a', { captions:	true, captionSelector:	'img', captionType: 'attr', captionData: 'alt', captionPosition: 'bottom', captionDelay:	250});
