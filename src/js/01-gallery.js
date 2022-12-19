@@ -5,14 +5,14 @@ const list = document.querySelector(".gallery");
 const markup = galleryItems.map((image) => `<div class="gallery__item"><a class="gallery__link" href=${image.original}><img class="gallery__image" src=${image.preview} data-source=${image.original} alt=${image.description}></a></div>`).join("");
 
 
-
 list.insertAdjacentHTML("beforeend", markup);
 
 let instance;
 
 const handleClick = (e) => {       
-    if (e.code == "Escape" && instance.visible() === true) {         
-        instance.close();            
+    if (e.code == "Escape" && instance.visible() === true) {             
+        instance.close();  
+        document.removeEventListener("keydown", handleClick);                     
     };    
 };     
 
@@ -26,18 +26,7 @@ const listClick = (event) => {
     
     instance.show(); 
 
-    document.addEventListener("keydown", handleClick); 
-    if (instance.visible() === false) {         
-        document.removeEventListener("keydown", handleClick);              
-    };         
+    document.addEventListener("keydown", handleClick);   
 };
 
 list.addEventListener("click", listClick);
-
-
-
-
-
-
-
-                      
