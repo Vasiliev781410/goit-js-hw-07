@@ -10,6 +10,12 @@ list.insertAdjacentHTML("beforeend", markup);
 
 let instance;
 
+const handleClick = (e) => {       
+    if (e.code == "Escape" && instance.visible() === true) {         
+        instance.close();            
+    };    
+};     
+
 const listClick = (event) => {     
     event.preventDefault();   
     if (event.target.nodeName !== "IMG") {  
@@ -19,12 +25,11 @@ const listClick = (event) => {
     instance = basicLightbox.create(`<img src=${selectedImage} width="800" height="600">`);
     
     instance.show(); 
-    document.addEventListener("keydown", (e) => {    
-        if (e.code == "Escape" && instance.visible() === true) {         
-            instance.close();  
-            e.stopPropagation();  
-        };    
-      });     
+
+    document.addEventListener("keydown", handleClick); 
+    if (instance.visible() === false) {         
+        document.removeEventListener("keydown", handleClick);              
+    };         
 };
 
 list.addEventListener("click", listClick);
