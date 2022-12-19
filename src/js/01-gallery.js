@@ -18,14 +18,21 @@ const listClick = (event) => {
     const selectedImage = event.target.dataset.source;
     instance = basicLightbox.create(`<img src=${selectedImage} width="800" height="600">`);
     
-    instance.show();      
+    instance.show(); 
+    document.addEventListener("keydown", (e) => {    
+        if (e.code == "Escape" && instance.visible() === true) {         
+            instance.close();  
+            e.stopPropagation();  
+        };    
+      });     
 };
 
 list.addEventListener("click", listClick);
 
-document.addEventListener("keydown", (e) => {    
-    if (e.code == "Escape" && instance.visible() === true) {         
-        instance.close();    
-    };
-  });
+
+
+
+
+
+
                       
