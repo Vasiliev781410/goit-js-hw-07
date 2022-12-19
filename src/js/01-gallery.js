@@ -10,9 +10,9 @@ list.insertAdjacentHTML("beforeend", markup);
 let instance;
 
 const handleClick = (e) => {       
-    if (e.code == "Escape" && instance.visible() === true) {             
-        instance.close();  
-        document.removeEventListener("keydown", handleClick);                     
+    if (e.code == "Escape" && instance.visible() === true) {
+        document.removeEventListener("keydown", handleClick);                 
+        instance.close();                         
     };    
 };     
 
