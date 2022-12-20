@@ -11,7 +11,7 @@ let instance;
 
 const handleClick = (e) => {       
     if (e.code == "Escape" && instance.visible() === true) {
-        document.removeEventListener("keydown", handleClick);                 
+        //document.removeEventListener("keydown", handleClick);                 
         instance.close();                         
     };    
 };     
@@ -22,7 +22,8 @@ const listClick = (event) => {
         return;
     };      
     const selectedImage = event.target.dataset.source;
-    instance = basicLightbox.create(`<img src=${selectedImage} width="800" height="600">`);
+    instance = basicLightbox.create(`<img src=${selectedImage} width="800" height="600">`,
+    {onClose: (instance) => {document.removeEventListener("keydown", handleClick)}});
     
     instance.show(); 
 
